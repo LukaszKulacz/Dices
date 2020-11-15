@@ -29,7 +29,7 @@ tracks/0/keys = {
 "values": [ PoolRealArray( 0, 0.16, 0.2, 0.84, 1 ), PoolRealArray( 0, 0.16, 0.8, 0.84, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "Middle"
 length = 0.3
 tracks/0/type = "value"
@@ -59,7 +59,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=5]
 resource_name = "NewFromMiddle"
 length = 0.3
 tracks/0/type = "value"
@@ -149,8 +149,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Right"
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
 tracks/0/interp = 1
@@ -164,8 +163,7 @@ tracks/0/keys = {
 "values": [ PoolRealArray( 0, 0.16, 0.8, 0.84, 1 ), PoolRealArray( 0, 0.16, 0.2, 0.84, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "WinLeft"
+[sub_resource type="Animation" id=9]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
@@ -194,8 +192,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "WinRight"
+[sub_resource type="Animation" id=10]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
@@ -224,7 +221,7 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="World" type="Node"]
+[node name="World" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -393,11 +390,15 @@ position = Vector2( 561, 225 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Left = SubResource( 3 )
-anims/Middle = SubResource( 5 )
-anims/NewFromMiddle = SubResource( 10 )
+anims/Middle = SubResource( 4 )
+anims/NewFromMiddle = SubResource( 5 )
 anims/NewFromWinLeft = SubResource( 6 )
 anims/NewFromWinRight = SubResource( 7 )
-anims/Right = SubResource( 4 )
-anims/WinLeft = SubResource( 8 )
-anims/WinRight = SubResource( 9 )
+anims/Right = SubResource( 8 )
+anims/WinLeft = SubResource( 9 )
+anims/WinRight = SubResource( 10 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 400, 230 )
+current = true
 [connection signal="button_up" from="ButtonRoll" to="." method="_on_Button_button_up"]
