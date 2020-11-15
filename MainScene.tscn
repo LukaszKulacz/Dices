@@ -1,0 +1,403 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://GameField.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game.gd" type="Script" id=2]
+[ext_resource path="res://Dice.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player.gd" type="Script" id=4]
+[ext_resource path="res://GameFieldMirror.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.16, 0.2, 0.84, 1 )
+colors = PoolColorArray( 0.492188, 0.0922852, 0.0922852, 1, 0.492188, 0.0922852, 0.0922852, 1, 0, 0, 0, 0.964706, 0.062439, 0.247036, 0.484375, 1, 0.062439, 0.247036, 0.484375, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 800
+
+[sub_resource type="Animation" id=3]
+resource_name = "Left"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ PoolRealArray( 0, 0.16, 0.2, 0.84, 1 ), PoolRealArray( 0, 0.16, 0.8, 0.84, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Middle"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ PoolRealArray( 0, 0.16, 0.2, 0.84, 1 ), PoolRealArray( 0, 0.16, 0.5, 0.84, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish_game_animation_end"
+} ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "NewFromMiddle"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ PoolRealArray( 0, 0.16, 0.5, 0.84, 1 ), PoolRealArray( 0, 0.16, 0.2, 0.84, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "new_game_animation_end"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "NewFromWinLeft"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ PoolRealArray( 0, 0.16, 1, 1, 1 ), PoolRealArray( 0, 0.16, 0.2, 0.84, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "new_game_animation_end"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "NewFromWinRight"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ PoolRealArray( 0, 0, 0, 0.84, 1 ), PoolRealArray( 0, 0.16, 0.2, 0.84, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "new_game_animation_end"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Right"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ PoolRealArray( 0, 0.16, 0.8, 0.84, 1 ), PoolRealArray( 0, 0.16, 0.2, 0.84, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "WinLeft"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ PoolRealArray( 0, 0.16, 0.2, 0.84, 1 ), PoolRealArray( 0, 0.16, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish_game_animation_end"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "WinRight"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ PoolRealArray( 0, 0.16, 0.2, 0.84, 1 ), PoolRealArray( 0, 0, 0, 0.84, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish_game_animation_end"
+} ]
+}
+
+[node name="World" type="Node"]
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 800.0
+margin_bottom = 460.0
+mouse_filter = 2
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerLeft" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="One" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 10 )
+text = "1"
+
+[node name="Two" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 40 )
+text = "2"
+
+[node name="Three" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 70 )
+text = "3"
+
+[node name="Four" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 100 )
+text = "4"
+
+[node name="Five" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 130 )
+text = "5"
+
+[node name="Six" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 160 )
+text = "6"
+
+[node name="UpperPart" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 190 )
+text = "( + ) ="
+
+[node name="3X" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 220 )
+text = "3x"
+
+[node name="4X" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 250 )
+text = "4x"
+
+[node name="Ful" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 280 )
+text = "3 + 2x"
+
+[node name="SmallStrit" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 310 )
+text = "maly strit"
+
+[node name="BigStrit" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 340 )
+text = "duzy strit"
+
+[node name="General" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 370 )
+text = "general"
+
+[node name="Luck" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 400 )
+text = "szansa"
+
+[node name="Sum" parent="PlayerLeft" instance=ExtResource( 1 )]
+position = Vector2( 10, 430 )
+text = "="
+
+[node name="PlayerRight" type="Node2D" parent="."]
+position = Vector2( 660, 0 )
+script = ExtResource( 4 )
+
+[node name="One" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 10 )
+text = "1"
+
+[node name="Two" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 40 )
+text = "2"
+
+[node name="Three" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 70 )
+text = "3"
+
+[node name="Four" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 100 )
+text = "4"
+
+[node name="Five" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 130 )
+text = "5"
+
+[node name="Six" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 160 )
+text = "6"
+
+[node name="UpperPart" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 190 )
+text = "= ( + )"
+
+[node name="3X" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 220 )
+text = "x3"
+
+[node name="4X" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 250 )
+text = "x4"
+
+[node name="Ful" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 280 )
+text = "x2 + 3"
+
+[node name="SmallStrit" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 310 )
+text = "maly strit"
+
+[node name="BigStrit" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 340 )
+text = "duzy strit"
+
+[node name="General" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 370 )
+text = "general"
+
+[node name="Luck" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 400 )
+text = "szansa"
+
+[node name="Sum" parent="PlayerRight" instance=ExtResource( 5 )]
+position = Vector2( 10, 430 )
+text = "="
+
+[node name="ButtonRoll" type="Button" parent="."]
+margin_left = 360.0
+margin_top = 400.0
+margin_right = 440.0
+margin_bottom = 440.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Rzucaj"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dice1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 175, 225 )
+
+[node name="Dice2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 265, 150 )
+
+[node name="Dice3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 368, 90 )
+
+[node name="Dice4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 471, 150 )
+
+[node name="Dice5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 561, 225 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Left = SubResource( 3 )
+anims/Middle = SubResource( 5 )
+anims/NewFromMiddle = SubResource( 10 )
+anims/NewFromWinLeft = SubResource( 6 )
+anims/NewFromWinRight = SubResource( 7 )
+anims/Right = SubResource( 4 )
+anims/WinLeft = SubResource( 8 )
+anims/WinRight = SubResource( 9 )
+[connection signal="button_up" from="ButtonRoll" to="." method="_on_Button_button_up"]
