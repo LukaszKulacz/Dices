@@ -1,0 +1,8 @@
+theme: jekyll-theme-cayman
+title: Kości
+description: Gra w kości 
+show_downloads: true
+github:
+  is_project_page: true
+  repository_url: http://github.com/LukaszKulacz/Dices
+  repository_name: Dices
