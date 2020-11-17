@@ -18,10 +18,12 @@ func _ready():
 func display_value(value):
 	if saved:
 		button.disabled = true
+		button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 		button.text = str(hard_value)
 	else:
 		soft_value = value
 		button.disabled = false
+		button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		button.text = str(soft_value)
 		
 func force_display_value(value):
