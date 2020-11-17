@@ -168,7 +168,9 @@ func calc_field(field):
 		Const.FOUR:		return 4 * count(4)
 		Const.FIVE:		return 5 * count(5)
 		Const.SIX:		return 6 * count(6)
-		Const.X3:		return find_times(3) * sum()
+		Const.X3:		
+			print(values)
+			return find_times(3) * sum()
 		Const.X4: 		return find_times(4) * sum()
 		Const.FUL:		return ful_test() * 25
 		Const.SMALL:	return small_test() * 30
